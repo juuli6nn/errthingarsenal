@@ -1,0 +1,294 @@
+.match-center-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 80px 0;
+  font-family: var(--font-display);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.match-blocks {
+  display: flex;
+  width: 100%;
+  gap: 4px;
+  background-color: #fff;
+  /* white gaps */
+}
+
+.match-block {
+  background-color: var(--arsenal-red);
+  /* red background */
+  padding: 12px 40px 12px 80px;
+  /* Reduced top and bottom padding further to shrink height */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.last-matches {
+  flex: 2;
+  background-color: #A30005;
+  padding-left: 300px; /* Increased slightly to move the whole block right */
+}
+
+.last-matches .matches-container {
+  margin-left: 60px; /* Shifts the matches right so the -60px date box aligns exactly with the block-title */
+}
+
+.last-matches .match-date {
+  background-color: var(--arsenal-red); /* Bright red for the date to contrast */
+}
+
+.next-match {
+  flex: 1.5;
+  position: relative;
+  /* Allows absolute positioning of the clock block inside it */
+  padding-right: 400px;
+  /* 360px for the new clock width + 40px gap so text isn't covered */
+}
+
+.next-match .block-title {
+  margin-left: -60px; /* Aligns the title exactly with the date pillar */
+}
+
+.clock-block {
+  position: absolute;
+  top: -12px;
+  /* Lifted slightly more for dramatic overlap */
+  right: 0;
+  /* Flush with right edge */
+  width: 360px;
+  height: 140px;
+  /* Wine red background to match the theme instead of black */
+  background: #A30005;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 40px;
+  box-shadow: -8px 12px 24px rgba(0, 0, 0, 0.3);
+  /* Deeper shadow for elevation */
+  z-index: 10;
+  border-left: 4px solid #fff;
+  /* Crisp architectural accent line */
+}
+
+.block-title {
+  font-size: 14px;
+  color: var(--white);
+  margin-bottom: 15px;
+  /* Reduced to make the block even more compact */
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.matches-container {
+  display: flex;
+  gap: 70px;
+}
+
+.match-item {
+  position: relative;
+  flex: 1;
+}
+
+.match-date {
+  position: absolute;
+  left: -60px;
+  /* Restored to -60px so it perfectly clears the texts and maintains alignment with titles */
+  top: 0;
+  /* No longer sticking to the top edge */
+  bottom: -12px;
+  /* Adjusted to match the new 12px bottom padding */
+  width: 48px;
+  background-color: #A30005;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+  /* Align with text */
+}
+
+.match-date::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  /* Align line with text */
+  left: 0;
+  width: 2px;
+  height: 48px;
+  /* Short white line */
+  background-color: #fff;
+}
+
+.match-date .day {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 4px;
+  /* Align top with the text on the right */
+}
+
+.match-date .month {
+  font-size: 11px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.match-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.competition {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.competition-row {
+  display: grid;
+  grid-template-columns: 180px max-content;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.competition-row .competition {
+  margin-bottom: 0;
+}
+
+.teams {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.team-row {
+  display: grid;
+  grid-template-columns: 180px max-content;
+  gap: 15px;
+  align-items: center;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.team-name.arsenal {
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.team-name.opponent {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.3);
+  /* Made much more transparent/clear */
+}
+
+.score {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.score.highlight {
+  color: #fff;
+  font-weight: 900;
+}
+
+.match-btn {
+  background-color: #fff;
+  color: var(--arsenal-red);
+  border: none;
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.match-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.match-btn.outline {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.match-btn.outline:hover {
+  background-color: #fff;
+  color: var(--arsenal-red);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 40px 50px 40px;
+  text-align: center;
+  gap: 10px;
+}
+
+.stats-grid.header {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.stats-grid .stat-val {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.countdown-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.countdown-val {
+  font-size: 40px;
+  color: #fff;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.countdown-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+  .match-blocks {
+    flex-direction: column;
+  }
+
+  .clock-block {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .matches-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
