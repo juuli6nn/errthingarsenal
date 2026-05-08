@@ -11,76 +11,221 @@
   width: 100%;
   gap: 4px;
   background-color: #fff;
-  /* white gaps */
 }
 
 .match-block {
-  background-color: var(--arsenal-red);
-  /* red background */
   padding: 12px 40px 12px 80px;
-  /* Reduced top and bottom padding further to shrink height */
-  color: #fff;
   display: flex;
   flex-direction: column;
 }
 
+/* LEFT HALF - WHITE THEME */
 .last-matches {
   flex: 2;
-  background-color: #A30005;
-  padding-left: 300px; /* Increased slightly to move the whole block right */
+  background-color: #f8f8f8;
+  color: #111;
+  padding-left: 300px;
 }
 
 .last-matches .matches-container {
-  margin-left: 60px; /* Shifts the matches right so the -60px date box aligns exactly with the block-title */
+  margin-left: 60px;
 }
 
 .last-matches .match-date {
-  background-color: var(--arsenal-red); /* Bright red for the date to contrast */
-}
-
-.next-match {
-  flex: 1.5;
-  position: relative;
-  /* Allows absolute positioning of the clock block inside it */
-  padding-right: 400px;
-  /* 360px for the new clock width + 40px gap so text isn't covered */
-}
-
-.next-match .block-title {
-  margin-left: -60px; /* Aligns the title exactly with the date pillar */
-}
-
-.clock-block {
   position: absolute;
-  top: -12px;
-  /* Lifted slightly more for dramatic overlap */
-  right: 0;
-  /* Flush with right edge */
-  width: 360px;
-  height: 140px;
-  /* Wine red background to match the theme instead of black */
-  background: #A30005;
+  left: -60px;
+  top: 0;
+  bottom: -12px;
+  width: 48px;
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 40px;
-  box-shadow: -8px 12px 24px rgba(0, 0, 0, 0.3);
-  /* Deeper shadow for elevation */
-  z-index: 10;
-  border-left: 4px solid #fff;
-  /* Crisp architectural accent line */
+  align-items: center;
+  padding-top: 4px;
 }
 
-.block-title {
+.last-matches .match-date::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 2px;
+  height: 48px;
+  background-color: var(--arsenal-red);
+}
+
+.last-matches .match-date .day {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 4px;
+  color: #111;
+}
+
+.last-matches .match-date .month {
+  font-size: 11px;
+  color: #111;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.last-matches .block-title {
   font-size: 14px;
-  color: var(--white);
+  color: var(--arsenal-red);
   margin-bottom: 15px;
-  /* Reduced to make the block even more compact */
   letter-spacing: 1px;
   font-weight: bold;
 }
 
+.last-matches .competition {
+  font-size: 10px;
+  color: #666;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.last-matches .team-name.arsenal {
+  font-weight: 500;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+.last-matches .team-name.opponent {
+  font-weight: 400;
+  color: #999;
+}
+
+.last-matches .score {
+  color: #666;
+  font-weight: 500;
+}
+
+.last-matches .score.highlight {
+  color: var(--arsenal-red);
+  font-weight: 900;
+}
+
+.last-matches .match-btn {
+  background-color: var(--arsenal-red);
+  color: #fff;
+  border: none;
+}
+
+.last-matches .match-btn:hover {
+  background-color: #A30005;
+}
+
+
+/* RIGHT HALF - RED THEME */
+.next-match {
+  flex: 1.5;
+  background-color: var(--arsenal-red);
+  color: #fff;
+  position: relative;
+  padding-right: 400px;
+}
+
+.next-match .block-title {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 15px;
+  margin-left: -60px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.next-match .match-date {
+  position: absolute;
+  left: -60px;
+  top: 0;
+  bottom: -12px;
+  width: 48px;
+  background-color: #A30005;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.next-match .match-date::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 2px;
+  height: 48px;
+  background-color: #fff;
+}
+
+.next-match .match-date .day {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 4px;
+  color: #fff;
+}
+
+.next-match .match-date .month {
+  font-size: 11px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.next-match .competition {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.next-match .team-name.arsenal {
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.next-match .team-name.opponent {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.next-match .stats-grid {
+  display: grid;
+  grid-template-columns: 40px 50px 40px;
+  text-align: center;
+  gap: 10px;
+}
+
+.next-match .stats-grid.header {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.next-match .stats-grid .stat-val {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.next-match .match-btn.outline {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.next-match .match-btn.outline:hover {
+  background-color: #fff;
+  color: var(--arsenal-red);
+}
+
+/* SHARED STRUCTURE */
 .matches-container {
   display: flex;
   gap: 70px;
@@ -91,64 +236,10 @@
   flex: 1;
 }
 
-.match-date {
-  position: absolute;
-  left: -60px;
-  /* Restored to -60px so it perfectly clears the texts and maintains alignment with titles */
-  top: 0;
-  /* No longer sticking to the top edge */
-  bottom: -12px;
-  /* Adjusted to match the new 12px bottom padding */
-  width: 48px;
-  background-color: #A30005;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 4px;
-  /* Align with text */
-}
-
-.match-date::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  /* Align line with text */
-  left: 0;
-  width: 2px;
-  height: 48px;
-  /* Short white line */
-  background-color: #fff;
-}
-
-.match-date .day {
-  font-size: 26px;
-  font-weight: 900;
-  line-height: 1;
-  margin-top: 4px;
-  /* Align top with the text on the right */
-}
-
-.match-date .month {
-  font-size: 11px;
-  color: #fff;
-  text-transform: uppercase;
-  margin-top: 4px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
 .match-details {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.competition {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 .competition-row {
@@ -180,32 +271,7 @@
   letter-spacing: 0.5px;
 }
 
-.team-name.arsenal {
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: 1px;
-}
-
-.team-name.opponent {
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.3);
-  /* Made much more transparent/clear */
-}
-
-.score {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-}
-
-.score.highlight {
-  color: #fff;
-  font-weight: 900;
-}
-
 .match-btn {
-  background-color: #fff;
-  color: var(--arsenal-red);
-  border: none;
   padding: 8px 16px;
   font-family: var(--font-display);
   font-weight: 700;
@@ -217,37 +283,22 @@
   letter-spacing: 1px;
 }
 
-.match-btn:hover {
-  background-color: #f0f0f0;
-}
-
-.match-btn.outline {
-  background-color: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-}
-
-.match-btn.outline:hover {
-  background-color: #fff;
-  color: var(--arsenal-red);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: 40px 50px 40px;
-  text-align: center;
-  gap: 10px;
-}
-
-.stats-grid.header {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.stats-grid .stat-val {
-  font-size: 14px;
-  color: #fff;
-  font-weight: 500;
+/* CLOCK BLOCK */
+.clock-block {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  width: 360px;
+  height: 140px;
+  background: #A30005;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 40px;
+  box-shadow: -8px 12px 24px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  border-left: 4px solid #fff;
 }
 
 .countdown-label {

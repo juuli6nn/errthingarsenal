@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Oswald', 'Inter', system-ui, -apple-system, sans-serif;
-  --arsenal-red: #EF0107;
-  --arsenal-gold: #9C824A;
+  --font-sans: 'Barlow', system-ui, -apple-system, sans-serif;
+  --font-display: 'Barlow Condensed', 'Inter', system-ui, -apple-system, sans-serif;
+  --arsenal-red: #DC2626;
+  --arsenal-gold: #FBBF24;
   --arsenal-blue: #063672;
 }
 
