@@ -1,4 +1,7 @@
-const PlayerCard = ({ player }) => {
+import React from 'react';
+import { PlayerCardProps } from '../types/player';
+
+const PlayerCard: React.FC<PlayerCardProps> = ({ player }) => {
   return (
     <div style={{
       backgroundColor: 'white',

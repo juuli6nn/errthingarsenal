@@ -1,10 +1,13 @@
-const MatchCard = ({ match }) => {
+import React from 'react';
+import { MatchCardProps } from '../types/match';
+
+const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
   const isArsenalHome = match.homeTeam === 'Arsenal';
   const arsenalScore = isArsenalHome ? match.homeScore : match.awayScore;
   const opponentScore = isArsenalHome ? match.awayScore : match.homeScore;
   const opponent = isArsenalHome ? match.awayTeam : match.homeTeam;
   
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: 'live' | 'finished' | 'scheduled'): string => {
     switch(status) {
       case 'live': return '#10B981';
       case 'finished': return '#6B7280';

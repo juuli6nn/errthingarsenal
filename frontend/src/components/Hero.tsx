@@ -1,4 +1,6 @@
-const Hero = () => {
+import React from 'react';
+
+const Hero: React.FC = () => {
   return (
     <section style={{
       background: 'linear-gradient(135deg, #EF0107 0%, #8B0000 100%)',
@@ -51,8 +53,12 @@ const Hero = () => {
           transition: 'all 0.3s ease',
           boxShadow: '0 4px 6px rgba(0,0,0,0.2)'
         }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#FFC700'}
-        onMouseOut={(e) => e.target.style.backgroundColor = '#FFD700'}
+        onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.currentTarget.style.backgroundColor = '#FFC700';
+        }}
+        onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.currentTarget.style.backgroundColor = '#FFD700';
+        }}
         >
           Explore Now
         </button>
