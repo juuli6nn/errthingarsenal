@@ -1,7 +1,6 @@
-import React from 'react';
 import './Newsletter.css';
 
-const Newsletter = () => {
+const Newsletter: React.FC = () => {
   return (
     <section className="newsletter-section">
       <div className="newsletter-overlay"></div>

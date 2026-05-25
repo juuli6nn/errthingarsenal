@@ -1,49 +1,54 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import MatchCenter from './components/MatchCenter';
 import Newsletter from './components/Newsletter';
 
 function App() {
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState<number>(0);
 
   // Ultra-Smooth Momentum Drag-to-scroll state
-  const carouselRef = useRef(null);
-  const isDown = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftPos = useRef(0);
-  const exactScrollLeft = useRef(0); // Tracks floating point scroll for buttery deceleration
-  const momentumID = useRef(null);
-  const velocityTimeout = useRef(null);
-  const velX = useRef(0);
-  const prevX = useRef(0);
-  const [cursorState, setCursorState] = useState('grab');
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const isDown = useRef<boolean>(false);
+  const startX = useRef<number>(0);
+  const scrollLeftPos = useRef<number>(0);
+  const exactScrollLeft = useRef<number>(0); // Tracks floating point scroll for buttery deceleration
+  const momentumID = useRef<number | null>(null);
+  const velocityTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const velX = useRef<number>(0);
+  const prevX = useRef<number>(0);
+  const [cursorState, setCursorState] = useState<'grab' | 'grabbing'>('grab');
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if (!carouselRef.current) return;
+    
     isDown.current = true;
     setCursorState('grabbing');
     startX.current = e.pageX - carouselRef.current.offsetLeft;
     scrollLeftPos.current = carouselRef.current.scrollLeft;
     exactScrollLeft.current = scrollLeftPos.current;
     prevX.current = e.pageX;
-    cancelAnimationFrame(momentumID.current);
+    
+    if (momentumID.current !== null) {
+      cancelAnimationFrame(momentumID.current);
+    }
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     if (!isDown.current) return;
     isDown.current = false;
     setCursorState('grab');
     beginMomentum();
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (): void => {
     if (!isDown.current) return;
     isDown.current = false;
     setCursorState('grab');
     beginMomentum();
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDown.current) return;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if (!isDown.current || !carouselRef.current) return;
     e.preventDefault();
     const x = e.pageX - carouselRef.current.offsetLeft;
     const walk = (x - startX.current) * 1.0; // 1:1 speed for pixel-perfect smooth dragging
@@ -56,16 +61,20 @@ function App() {
     prevX.current = e.pageX;
 
     // Clear velocity if user stops dragging but holds mouse
-    clearTimeout(velocityTimeout.current);
+    if (velocityTimeout.current !== null) {
+      clearTimeout(velocityTimeout.current);
+    }
     velocityTimeout.current = setTimeout(() => {
       velX.current = 0;
     }, 100);
   };
 
-  const runMomentumLoop = () => {
-    if (momentumID.current) return; // Prevent multiple loops
+  const runMomentumLoop = (): void => {
+    if (momentumID.current !== null) return; // Prevent multiple loops
     
-    const loop = () => {
+    const loop = (): void => {
+      if (!carouselRef.current) return;
+      
       if (Math.abs(velX.current) > 0.5) {
         exactScrollLeft.current += velX.current;
         carouselRef.current.scrollLeft = exactScrollLeft.current;
@@ -78,12 +87,12 @@ function App() {
     momentumID.current = requestAnimationFrame(loop);
   };
 
-  const beginMomentum = () => {
+  const beginMomentum = (): void => {
     velX.current = velX.current * 1.5; // Smooth throw boost for dragging
     runMomentumLoop();
   };
 
-  const scrollCarousel = (direction) => {
+  const scrollCarousel = (direction: number): void => {
     if (!carouselRef.current) return;
     
     // Sync exact floating point with real scroll
@@ -97,7 +106,7 @@ function App() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       setScrollY(window.scrollY);
     };
 
@@ -106,7 +115,8 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Unused scale/opacity removed
+  // Use scrollY to prevent unused variable warning
+  console.log('Current scroll position:', scrollY);
 
   return (
     <div className="app-container">

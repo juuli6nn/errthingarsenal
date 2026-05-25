@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import './MatchCenter.css';
 
-const MatchCenter = () => {
+const MatchCenter: React.FC = () => {
   return (
     <section className="match-center-wrapper">
       <div className="match-blocks">
